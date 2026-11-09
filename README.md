@@ -4,13 +4,16 @@
 
 A hands-on SOC cybersecurity project focused on detecting, investigating, and responding to simulated SSH brute-force attacks against a Linux server. Demonstrates practical skills in security log analysis, SIEM monitoring, threat detection, incident response, and system hardening.
 
-### Skills Learned
+### Skills Demonstrated
 
-- Advanced understanding of SIEM concepts and practical application.
-- Proficiency in analyzing and interpreting network logs.
-- Ability to generate and recognize attack signatures and patterns.
-- Enhanced knowledge of network protocols and security vulnerabilities.
-- Development of critical thinking and problem-solving skills in cybersecurity.
+-Linux system administration and security configuration
+-SSH authentication monitoring and security log analysis
+-SIEM deployment, log ingestion, and event correlation (planned)
+-Brute-force attack simulation and threat detection (planned)
+-Detection rule development and alert investigation (planned)
+-Incident triage, analysis, and response (planned)
+-System hardening and access control (planned)
+-Technical documentation and security reporting
 
 ### Tools Used
 
