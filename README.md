@@ -15,13 +15,38 @@ A hands-on SOC cybersecurity project focused on detecting, investigating, and re
 - System hardening and access control (planned)
 - Technical documentation and security reporting
 
-### Tools Used
+### Tools & Technologies Used
 
-- Security Information and Event Management (SIEM) system for log ingestion and analysis.
-- Network analysis tools (such as Wireshark) for capturing and examining network traffic.
-- Telemetry generation tools to create realistic network traffic and attack scenarios.
+- UTM: Virtual machine hosting and lab environment
+- Ubuntu Linux: Target server and operating system
+- OpenSSH: Secure remote access and authentication monitoring
+- journalctl: System and SSH security log analysis
+- grep: Log filtering and identification of relevant events
+- SIEM platform (TBD): Centralized security monitoring and detection (planned)
+- fail2ban: Automated blocking of repeated failed authentication attempts (planned)
 
 ## Steps
-drag & drop screenshots here or use imgur and reference them using imgsrc
 
-Every screenshot should have some text explaining what the screenshot is about.
+### Phase 1: Lab Environment Setup — Completed
+- Installed UTM to create a virtualized cybersecurity lab.
+- Deployed Ubuntu Linux as the target server.
+- Configured SSH connectivity between the macOS host and Ubuntu VM.
+- Verified successful remote access using SSH.
+
+### Phase 2: Security Logging — Completed
+- Installed and configured OpenSSH Server.
+- Verified SSH service operation.
+- Examined SSH service logs using `journalctl`.
+- Filtered relevant log entries using `grep`.
+
+### Phase 3: SIEM Deployment — Pending
+
+### Phase 4: SSH Brute-Force Simulation — Pending
+
+### Phase 5: Detection Engineering — Pending
+
+### Phase 6: Incident Investigation — Pending
+
+### Phase 7: Incident Response & Hardening — Pending
+
+### Phase 8: Final Documentation — Ongoing
