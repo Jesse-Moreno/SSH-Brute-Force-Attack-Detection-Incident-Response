@@ -32,7 +32,9 @@ A hands-on SOC cybersecurity project focused on detecting, investigating, and re
 - Deployed Ubuntu Linux as the target server.
 - Configured SSH connectivity between the macOS host and Ubuntu VM.
 - Verified successful remote access using SSH.
+Configured an Ubuntu Linux virtual machine using UTM, establishing an isolated environment for SSH security monitoring and attack simulation.
 <img width="565" height="368" alt="P1-01-ubuntu-server" src="https://github.com/user-attachments/assets/936081d2-6e4c-4639-98ca-40538be0c8fc" />
+Established a successful SSH connection from the macOS host to the Ubuntu server and verified remote access using the whoami and hostname commands.
 <img width="566" height="509" alt="P1-02-ssh-connection" src="https://github.com/user-attachments/assets/381107ca-1304-44cd-babd-dc4114d6d5e4" />
 
   
