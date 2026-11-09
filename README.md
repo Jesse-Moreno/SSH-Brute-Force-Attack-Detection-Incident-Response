@@ -6,14 +6,14 @@ A hands-on SOC cybersecurity project focused on detecting, investigating, and re
 
 ### Skills Demonstrated
 
--Linux system administration and security configuration
--SSH authentication monitoring and security log analysis
--SIEM deployment, log ingestion, and event correlation (planned)
--Brute-force attack simulation and threat detection (planned)
--Detection rule development and alert investigation (planned)
--Incident triage, analysis, and response (planned)
--System hardening and access control (planned)
--Technical documentation and security reporting
+- Linux system administration and security configuration
+- SSH authentication monitoring and security log analysis
+- SIEM deployment, log ingestion, and event correlation (planned)
+- Brute-force attack simulation and threat detection (planned)
+- Detection rule development and alert investigation (planned)
+- Incident triage, analysis, and response (planned)
+- System hardening and access control (planned)
+- Technical documentation and security reporting
 
 ### Tools Used
 
