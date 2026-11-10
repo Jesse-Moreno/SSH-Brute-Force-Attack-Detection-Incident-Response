@@ -96,7 +96,7 @@ A hands-on SOC cybersecurity project focused on detecting, investigating, and re
 
 <p align="center"><em>Figure 10. Live threshold alert showing source IP 192.0.2.10 and five matching synthetic authentication failures.</em></p>
 
-### Phase 6: Incident Investigation — Pending
+### Phase 6: Incident Investigation — Completed
 ### Investigation Findings
 
 - Investigated the SSH threshold alert generated on November 10, 2026, at 16:58:15.944 Central.
@@ -131,6 +131,14 @@ The rule correctly identified the five matching failures. No successful authenti
 <img width="1440" height="820" alt="P6-12-successful-authentication-check" src="https://github.com/user-attachments/assets/874317ee-b925-4753-8c10-3268ff207c46" />
 
 <p align="center"><em>Figure 12. No successful authentication events found for 192.0.2.10 in the synthetic validation batch during the selected investigation window.</em></p>
+
+<img width="1440" height="818" alt="P6-13-investigation-note" src="https://github.com/user-attachments/assets/b3d4cb04-8906-4fbc-9608-4bbc8f919799" />
+
+<p align="center"><em>Figure 13. Alert closed after investigation, showing source IP 192.0.2.10 and a threshold result count of five.</em></p>
+
+<img width="1440" height="819" alt="P6-14-alert-closure" src="https://github.com/user-attachments/assets/bccffdad-493e-45de-b213-795e6603abc2" />
+
+<p align="center"><em>Figure 14. Saved investigation note documenting event correlation, the successful-authentication search, authorized synthetic testing, and the investigation’s scope limitations.</em></p>
 
 ### Phase 7: Incident Response & Hardening — Pending
 
