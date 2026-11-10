@@ -82,17 +82,55 @@ A hands-on SOC cybersecurity project focused on detecting, investigating, and re
 - Filtered for `p4-synthetic` in Elastic Discover and verified that five failures came from `192.0.2.10` within 40 seconds, with one comparison event from `192.0.2.20`.
 <img width="1440" height="819" alt="P4-08-synthetic-ssh-failures-in-siem" src="https://github.com/user-attachments/assets/c3dcaa43-4edf-454a-9f16-47c24ae54e25" />
 
-<p align="center"><em>Figure 8. Elastic Discover shows six synthetic SSH authentication failures with timestamps, source IPs, event outcomes, and the p4-synthetic tag.</em></p>
+<p align="center"><em>Figure 8. Six synthetic SSH authentication failures displayed in Elastic Discover.</em></p>
 
 ### Phase 5: Detection Engineering — Completed
 - Configured an Elastic Security threshold rule to flag five or more simulated SSH authentication failures from the same source IP in a single execution window.
 - Validated the rule against the Phase 4 synthetic logs. The preview flagged `192.0.2.10` with five failures, while `192.0.2.20` stayed below the threshold with one.
-- Saved the lab rule in a disabled state after validation.
+- Enabled the rule and validated live alert generation using fresh synthetic events. The resulting alert identified source IP `192.0.2.10` with a threshold result count of five.
 <img width="1440" height="819" alt="P5-09-ssh-threshold-rule-preview" src="https://github.com/user-attachments/assets/e430a1de-e2e8-4ee9-8e77-ba0f8fd31646" />
 
-<p align="center"><em>Figure 9. Elastic Security’s rule preview generated a low-severity alert after five simulated SSH authentication failures from source IP 192.0.2.10 met the configured threshold.</em></p>
+<p align="center"><em>Figure 9. Rule preview detecting five synthetic SSH authentication failures from 192.0.2.10.</em></p>
+
+<img width="1440" height="819" alt="P5-10-ssh-threshold-alert" src="https://github.com/user-attachments/assets/de036ee3-19ff-4c11-95c1-557043137add" />
+
+<p align="center"><em>Figure 10. Live threshold alert showing source IP 192.0.2.10 and five matching synthetic authentication failures.</em></p>
 
 ### Phase 6: Incident Investigation — Pending
+### Investigation Findings
+
+- Investigated the SSH threshold alert generated on November 10, 2026, at 16:58:15.944 Central.
+- Identified five synthetic authentication failures from `192.0.2.10` targeting `socadmin` at approximately 16:57:59.
+- Correlated the five source events with the alert's threshold result count of five.
+- Searched for successful authentication events from the same source within the synthetic validation batch between 16:55 and 17:05 Central; no matching events were found.
+- Classified the alert as an expected detection of authorized synthetic test activity.
+
+### Incident Timeline
+
+All times are Central on November 10, 2026.
+
+| Time | Observed event |
+|---|---|
+| 16:57:59.506–16:57:59.511 | Five synthetic authentication failures recorded from `192.0.2.10`, targeting `socadmin`. |
+| 16:58:15.944 | Elastic Security generated the SSH threshold alert with a matching event count of five. |
+| Investigation window: 16:55–17:05 | Search returned no successful authentication events for the same source in the synthetic validation batch. |
+
+### Alert Disposition
+
+**Assessment:** Expected detection of authorized synthetic test activity.
+
+The rule correctly identified the five matching failures. No successful authentication events were found within the scoped test batch and investigation window.
+
+**Response decision:** No host containment was warranted for these directly inserted synthetic events. Ubuntu SSH hardening will be performed separately in Phase 7.
+
+**Scope and limitations:** These events were inserted directly into Elasticsearch to validate detection and investigation workflows. They do not establish that real SSH attempts occurred or determine whether the Ubuntu host was compromised.
+<img width="1440" height="821" alt="P6-11-alert-source-event-investigation" src="https://github.com/user-attachments/assets/f7576779-0bd9-4581-bfd4-d9da604ec0b2" />
+
+<p align="center"><em>Figure 11. Investigation of five synthetic authentication failures from 192.0.2.10 targeting socadmin that matched the threshold alert.</em></p>
+
+<img width="1440" height="820" alt="P6-12-successful-authentication-check" src="https://github.com/user-attachments/assets/874317ee-b925-4753-8c10-3268ff207c46" />
+
+<p align="center"><em>Figure 12. No successful authentication events found for 192.0.2.10 in the synthetic validation batch during the selected investigation window.</em></p>
 
 ### Phase 7: Incident Response & Hardening — Pending
 
