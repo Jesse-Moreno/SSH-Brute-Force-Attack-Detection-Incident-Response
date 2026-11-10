@@ -68,7 +68,7 @@ A hands-on SOC cybersecurity project focused on detecting, investigating, and re
 
 <p align="center"><em>Figure 6. Elastic Discover shows a successful SSH password login for socadmin from 192.168.64.1 on ubuntu-soc-lab, with the event timestamp and Journald input visible.</em></p>
 
-### Phase 4: SSH Brute-Force Simulation — Pending
+### Phase 4: SSH Brute-Force Simulation — Completed
 #### Preliminary log validation
 
 - Filtered the `logs-*` data view in Elastic Discover for `Failed password` events on `ubuntu-soc-lab`.
@@ -77,6 +77,12 @@ A hands-on SOC cybersecurity project focused on detecting, investigating, and re
 <img width="1435" height="794" alt="P4-07-ssh-failed-logins-in-siem" src="https://github.com/user-attachments/assets/b5843b1b-ddb3-400b-84e3-0e4667f9b67d" />
 
 <p align="center"><em>Figure 7. Elastic Discover shows two failed SSH password attempts for socadmin on ubuntu-soc-lab from 192.168.64.1, approximately 51 seconds apart.</em></p>
+
+- Indexed six synthetic SSH authentication failures in Elasticsearch and tagged them `p4-synthetic`.
+- Filtered for `p4-synthetic` in Elastic Discover and verified that five failures came from `192.0.2.10` within 40 seconds, with one comparison event from `192.0.2.20`.
+<img width="1440" height="819" alt="P4-08-synthetic-ssh-failures-in-siem" src="https://github.com/user-attachments/assets/c3dcaa43-4edf-454a-9f16-47c24ae54e25" />
+
+<p align="center"><em>Figure 8. Elastic Discover shows six synthetic SSH authentication failures with timestamps, source IPs, event outcomes, and the p4-synthetic tag.</em></p>
 
 ### Phase 5: Detection Engineering — Pending
 
