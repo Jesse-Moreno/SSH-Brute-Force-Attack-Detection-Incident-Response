@@ -84,7 +84,13 @@ A hands-on SOC cybersecurity project focused on detecting, investigating, and re
 
 <p align="center"><em>Figure 8. Elastic Discover shows six synthetic SSH authentication failures with timestamps, source IPs, event outcomes, and the p4-synthetic tag.</em></p>
 
-### Phase 5: Detection Engineering — Pending
+### Phase 5: Detection Engineering — Completed
+- Configured an Elastic Security threshold rule to flag five or more simulated SSH authentication failures from the same source IP in a single execution window.
+- Validated the rule against the Phase 4 synthetic logs. The preview flagged `192.0.2.10` with five failures, while `192.0.2.20` stayed below the threshold with one.
+- Saved the lab rule in a disabled state after validation.
+<img width="1440" height="819" alt="P5-09-ssh-threshold-rule-preview" src="https://github.com/user-attachments/assets/e430a1de-e2e8-4ee9-8e77-ba0f8fd31646" />
+
+<p align="center"><em>Figure 9. Elastic Security’s rule preview generated a low-severity alert after five simulated SSH authentication failures from source IP 192.0.2.10 met the configured threshold.</em></p>
 
 ### Phase 6: Incident Investigation — Pending
 
