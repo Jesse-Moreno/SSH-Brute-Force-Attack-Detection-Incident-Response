@@ -58,9 +58,25 @@ A hands-on SOC cybersecurity project focused on detecting, investigating, and re
 
 <p align="center"><em>Figure 5. SSH authentication logs filtered using grep to isolate failed login attempts, demonstrating targeted security event analysis.</em></p>
 
-### Phase 3: SIEM Deployment — Pending
+### Phase 3: SIEM Deployment — Completed
+- Created an Elastic Security project on Elastic Cloud Serverless.
+- Configured the System integration to collect Ubuntu logs from Journald using the `ubuntu-soc-lab` agent policy.
+- Installed Elastic Agent on the Ubuntu VM and confirmed enrollment in Fleet.
+- Opened a new SSH session from macOS to generate a successful login event.
+- Searched the `logs-*` data view in Elastic Discover and verified the event’s timestamp, username, source IP, and outcome.
+<img width="1438" height="821" alt="P3-06-ssh-event-in-siem" src="https://github.com/user-attachments/assets/fc32b333-debb-4d98-bc58-cfb406128a7a" />
+
+<p align="center"><em>Figure 6. Elastic Discover shows a successful SSH password login for socadmin from 192.168.64.1 on ubuntu-soc-lab, with the event timestamp and Journald input visible.</em></p>
 
 ### Phase 4: SSH Brute-Force Simulation — Pending
+#### Preliminary log validation
+
+- Filtered the `logs-*` data view in Elastic Discover for `Failed password` events on `ubuntu-soc-lab`.
+- Verified two historical SSH login failures for `socadmin` from `192.168.64.1`.
+- Compared the timestamps and found that the failures occurred approximately 51 seconds apart.
+<img width="1435" height="794" alt="P4-07-ssh-failed-logins-in-siem" src="https://github.com/user-attachments/assets/b5843b1b-ddb3-400b-84e3-0e4667f9b67d" />
+
+<p align="center"><em>Figure 7. Elastic Discover shows two failed SSH password attempts for socadmin on ubuntu-soc-lab from 192.168.64.1, approximately 51 seconds apart.</em></p>
 
 ### Phase 5: Detection Engineering — Pending
 
