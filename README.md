@@ -140,7 +140,7 @@ The rule correctly identified the five matching failures. No successful authenti
 
 <p align="center"><em>Figure 14. Saved investigation note documenting event correlation, the successful-authentication search, authorized synthetic testing, and the investigation’s scope limitations.</em></p>
 
-### Phase 7: Incident Response & Hardening — Pending
+### Phase 7: Incident Response & Hardening — Completed
 ### Steps Taken
 1. **Established SSH security baseline:** Inspected the effective OpenSSH configuration using `sshd -T`, confirming password authentication was enabled and public-key authentication was available (Figure 15).
 2. **Generated an SSH key pair:** Created an Ed25519 public/private key pair on the macOS host and protected the private key with a passphrase.
@@ -164,5 +164,24 @@ The rule correctly identified the five matching failures. No successful authenti
 
 <p align="center"><em style="font-weight: normal;">Figure 17 — Successful SSH public-key authentication after hardening, confirming that authorized key-based access remains functional while password authentication is disabled.</em></p>
 
+<img width="566" height="338" alt="P7-18-fail2ban-ssh-jail-status" src="https://github.com/user-attachments/assets/f188fa19-336c-451e-a5fd-040be42eade3" />
+
+<p align="center"><em>Figure 18 — Fail2ban SSH jail successfully activated, monitoring SSH authentication events through the systemd journal with no failed attempts or banned IP addresses recorded at the time of verification.</em></p>
+
+<img width="566" height="342" alt="P7-19-fail2ban-manual-ip-ban" src="https://github.com/user-attachments/assets/81243036-4ccc-4693-96b5-0968bba9db97" />
+
+<p align="center"><em>Figure 19 — Controlled Fail2ban manual ban test showing the test IP address 192.0.2.10 successfully added to the SSH jail ban list, confirming that the jail accepts administrative ban commands.</em></p>
+
+<img width="568" height="341" alt="P7-20-fail2ban-automatic-ban" src="https://github.com/user-attachments/assets/66ee8a86-459e-4d79-b7f2-c7a11601220c" />
+
+<p align="center"><em>Figure 20 — Fail2ban automatically banned the loopback IP address 127.0.0.1 after five failed SSH authentication attempts, validating the configured detection threshold and automated blocking response.</em></p>
+
+<img width="570" height="340" alt="P7-21-fail2ban-restoration" src="https://github.com/user-attachments/assets/c28cf3a5-6f27-4c2f-9805-110b62b053d9" />
+
+<p align="center"><em>Figure 21 — Post-test Fail2ban restoration confirming successful removal of the temporary loopback IP ban, reactivation of self-IP protection, and zero currently banned addresses while retaining historical ban counters.</em></p>
+
+<img width="570" height="340" alt="P7-22-fail2ban-persistence" src="https://github.com/user-attachments/assets/54c7de61-8bd1-426a-9c27-2efa56624a58" />
+
+<p align="center"><em>Figure 22 — Successful Fail2ban service restart and SSH jail verification confirming that the persistent configuration retains the loopback and management-host exemptions, self-IP protection, and active SSH monitoring.</em></p>
 
 ### Phase 8: Final Documentation — Ongoing
