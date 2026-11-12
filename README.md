@@ -141,5 +141,28 @@ The rule correctly identified the five matching failures. No successful authenti
 <p align="center"><em>Figure 14. Saved investigation note documenting event correlation, the successful-authentication search, authorized synthetic testing, and the investigation’s scope limitations.</em></p>
 
 ### Phase 7: Incident Response & Hardening — Pending
+### Steps Taken
+1. **Established SSH security baseline:** Inspected the effective OpenSSH configuration using `sshd -T`, confirming password authentication was enabled and public-key authentication was available (Figure 15).
+2. **Generated an SSH key pair:** Created an Ed25519 public/private key pair on the macOS host and protected the private key with a passphrase.
+3. **Authorized key-based access:** Added the public key to Ubuntu's `~/.ssh/authorized_keys` file and configured appropriate SSH directory and file permissions.
+4. **Verified public-key authentication:** Successfully connected from macOS to Ubuntu using the private key and confirmed the authentication event in SSH logs.
+5. **Disabled password authentication:** Created `/etc/ssh/sshd_config.d/01-soc-hardening.conf` with `PasswordAuthentication no`, `KbdInteractiveAuthentication no`, and `PubkeyAuthentication yes`.
+6. **Validated and applied configuration:** Checked the configuration using `sshd -t`, verified effective authentication settings using `sshd -T`, and reloaded the SSH service.
+7. **Tested password-based access:** Attempted an SSH connection with public-key authentication disabled. The server rejected the connection with `Permission denied (publickey)` (Figure 16).
+8. **Confirmed authorized access remained functional:** Successfully reconnected to Ubuntu using the Ed25519 private key, verifying that SSH access remained available after hardening (Figure 17).
+
+**Outcome:** Password-based SSH authentication was disabled while authorized public-key authentication remained functional, reducing exposure to password-based brute-force attacks.
+<img width="515" height="368" alt="P7-15-ssh-security-baseline" src="https://github.com/user-attachments/assets/744e41d3-aad9-49a6-a522-d4f793c1db71" />
+
+<p align="center"><em>Figure 15 — SSH Security Baseline: OpenSSH effective configuration before hardening, showing password authentication enabled, public-key authentication available, root password login restricted, and a maximum of six authentication attempts per connection.</em></p>
+
+<img width="565" height="366" alt="P7-16-password-authentication-denied" src="https://github.com/user-attachments/assets/63aacdf6-8d2d-4810-a24e-575fcc63683e" />
+
+<p align="center"><em>Figure 16 — SSH password authentication test showing "Permission denied (publickey)," confirming that password-based remote login is disabled after hardening.</em></p>
+
+<img width="568" height="340" alt="P7-17-publickey-authentication-success" src="https://github.com/user-attachments/assets/d30f5f8e-83cf-4f3e-8a96-7af763f29cac" />
+
+<p align="center"><em style="font-weight: normal;">Figure 17 — Successful SSH public-key authentication after hardening, confirming that authorized key-based access remains functional while password authentication is disabled.</em></p>
+
 
 ### Phase 8: Final Documentation — Ongoing
