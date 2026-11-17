@@ -2,30 +2,28 @@
 
 ## Objective
 
-A hands-on SOC cybersecurity project focused on detecting, investigating, and responding to simulated SSH brute-force attacks against a Linux server. Demonstrates practical skills in security log analysis, SIEM monitoring, threat detection, incident response, and system hardening.
+I built a SOC lab to detect, investigate, and respond to simulated SSH brute-force activity on an Ubuntu server. I collected SSH authentication logs from `journald` in Elastic, tested a detection rule for repeated failed logins, and documented my findings in a note attached to the alert. I then disabled SSH password authentication, verified key-based access, and tested Fail2ban.
 
 ### Skills Demonstrated
 
-- Linux system administration and security configuration
-- SSH authentication monitoring and security log analysis
-- SIEM deployment, log ingestion, and event correlation (planned)
-- Brute-force attack simulation and threat detection (planned)
-- Detection rule development and alert investigation (planned)
-- Incident triage, analysis, and response (planned)
-- System hardening and access control (planned)
-- Technical documentation and security reporting
+- Linux administration and OpenSSH configuration
+- SIEM log ingestion and SSH authentication log analysis
+- Controlled SSH brute-force simulation and synthetic event testing
+- Threshold rule development and alert validation
+- Alert triage and investigation documentation in Elastic Security
+- SSH hardening with key-based authentication and Fail2ban
 
 ### Tools & Technologies Used
 
-- UTM: Virtual machine hosting and lab environment
-- Ubuntu Linux: Target server and operating system
-- OpenSSH: Secure remote access and authentication monitoring
-- journalctl: System and SSH security log analysis
-- grep: Log filtering and identification of relevant events
-- SIEM platform (TBD): Centralized security monitoring and detection (planned)
-- fail2ban: Automated blocking of repeated failed authentication attempts (planned)
+- **UTM** — Hosted the Ubuntu Server virtual machine
+- **Ubuntu Server and OpenSSH** — Ran the SSH service and generated authentication logs
+- **systemd journal, `journalctl`, and `grep`** — Stored, inspected, and filtered SSH events on the server
+- **Kibana Discover and KQL** — Queried and verified successful and failed SSH login events
+- **Elastic Agent (Fleet-managed)** — Collected SSH authentication logs from Ubuntu’s `journald` using the System integration and shipped them to Elastic.
+- **Elastic Security** — Configured the threshold rule, reviewed the alert, and recorded the investigation findings in an attached note.
+- **Fail2ban** — Tested automated blocking and verified that the SSH jail stayed active after a service restart
 
-## Steps
+## Lab Walkthrough
 
 ### Phase 1: Lab Environment Setup — Completed
 - Installed UTM to create a virtualized cybersecurity lab.
@@ -152,6 +150,7 @@ The rule correctly identified the five matching failures. No successful authenti
 8. **Confirmed authorized access remained functional:** Successfully reconnected to Ubuntu using the Ed25519 private key, verifying that SSH access remained available after hardening (Figure 17).
 
 **Outcome:** Password-based SSH authentication was disabled while authorized public-key authentication remained functional, reducing exposure to password-based brute-force attacks.
+
 <img width="515" height="368" alt="P7-15-ssh-security-baseline" src="https://github.com/user-attachments/assets/744e41d3-aad9-49a6-a522-d4f793c1db71" />
 
 <p align="center"><em>Figure 15 — SSH Security Baseline: OpenSSH effective configuration before hardening, showing password authentication enabled, public-key authentication available, root password login restricted, and a maximum of six authentication attempts per connection.</em></p>
@@ -184,4 +183,11 @@ The rule correctly identified the five matching failures. No successful authenti
 
 <p align="center"><em>Figure 22 — Successful Fail2ban service restart and SSH jail verification confirming that the persistent configuration retains the loopback and management-host exemptions, self-IP protection, and active SSH monitoring.</em></p>
 
-### Phase 8: Final Documentation — Ongoing
+### Results and Lessons Learned
+
+- Verified that Elastic collected successful and failed SSH login events from Ubuntu.
+- Used labeled synthetic SSH failures to trigger a threshold alert and documented the investigation in a note attached to the alert.
+- Disabled SSH password authentication and confirmed in `journalctl` that key-based login still worked.
+- Tested Fail2ban blocking, restored the regular configuration, and verified that the SSH jail was active after restarting Fail2ban.
+
+The lab showed me how to verify each part of the workflow independently, from checking that SSH logs reached Elastic to confirming that the hardening changes worked on the server.
